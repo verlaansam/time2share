@@ -16,7 +16,7 @@ return new class extends Migration
             $table->timestamps();
             $table->integer('userId');
             $table->string('name');
-            $table->string('description');
+            $table->string('location');
             $table->string('catagorie');
             $table->string('image');
             $table->date('availableFrom');
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('product_tables');
+        //
     }
 };

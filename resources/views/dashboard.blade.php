@@ -10,12 +10,13 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg flex justify-center  ">
                 <div class="p-6 text-gray-900  w-2/4 bg-gray-200 p-1 m-3 rounded-xl flex justify-center flex-col">
                     <h1 class="self-center text-amber-700 text-3xl font-medium">Add Procduct</h1>
-                    <form class="grid grid-cols-2">
+                    <form class="grid grid-cols-2" method="POST" action="{{ route('product_table')}}"">
+                        {{ csrf_field() }}
                         <div>
                         <label for="name">title:</label><br>
                         <input type="text" id="name" name="name" value="spork"><br>
-                        <label for="description">description:</label><br>
-                        <textarea name="description" rows="5" cols="15">is het een vork? is het een lepel? nee, het is een spork!</textarea><br>
+                        <label for="location">location:</label><br>
+                        <input type="text" id="location" name="location" value="location"><br>
                         <label for="catagorie">Choose a catagorie:</label><br>
                         <select id="catagorie" name="catagorie">
                             <option value="utensils">utensils</option>

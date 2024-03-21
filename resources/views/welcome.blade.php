@@ -35,16 +35,18 @@
             </header>
         <!-- product  -->
         <article class="shadow-[rgba(0,0,0,0.1)_10px_-10px_4px_0px] h-fit">
+            @foreach ($products as $product_table)
             <section class="flex items-center justify-center w-1/4 h-[400px]">
                 <article class="bg-gray-200 w-[90%] h-[90%] rounded-xl shadow-lg">
-                    <p class="w-full h-[80%] bg-green-500 rounded-t-xl">meloen.png</p>
+                    <p class="w-full h-[80%] bg-green-500 rounded-t-xl">{{ $product_table->image}}</p>
                     <div class=" h-1/6 grid grid-cols-2 m-1">
-                        <h1 class="text-4xl text-amber-700">naam</h1>
+                        <h1 class="text-4xl text-amber-700">{{ $product_table->name}}</h1>
                         <p class="col-start-1 text-gray-600">locatie</p>
-                        <p class=" col-start-2 justify-self-end text-gray-600">datum</p>
+                        <p class=" col-start-2 justify-self-end text-gray-600">{{ $product_table->availableFrom}} - {{ $product_table->availableTill}}</p>
                     </div>
                 </article>
             </section>
+            @endforeach 
         </article>
     
     </body>
