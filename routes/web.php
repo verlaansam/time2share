@@ -19,15 +19,15 @@ Route::get('/', [product_table_controller::class, 'index']);
 
 Route::post('/product_table_route', [product_table_controller::class, 'product_table'])->name('product_table');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', [product_table_controller::class, 'dashboard'])->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+Route::post('delete_product_route/{id}', [product_table_controller::class, 'delete_product'])->name('delete_product');
 
 
 require __DIR__.'/auth.php';

@@ -10,7 +10,18 @@ use App\models\product_table;
 class product_table_controller extends Controller
 {
     public function index(){
-        return view('welcome', ['products' => product_table::all()]);
+        return view('welcome', ['product' => product_table::all()]);
+    }
+
+    public function dashboard(){
+        return view('dashboard', ['product' => product_table::all()]);
+    }
+
+    public function delete_product($id){
+        $product = product_table::find($id);
+        $product->delete();
+        return redirect('/dashboard');
+
     }
 
     public function product_table(Request $request){
@@ -23,6 +34,6 @@ class product_table_controller extends Controller
         $new_product->availableFrom = $request->availableFrom;
         $new_product->availableTill = $request->availableTill;
         $new_product->save();
-        return view('welcome');
+        return redirect('/dashboard');
     }
 }
