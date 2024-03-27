@@ -5,6 +5,9 @@
             <div class="flex justify-center">
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('index')" :active="request()->routeIs('index')">
+                        <p class="text-amber-700">{{ __('Home') }}</p>
+                    </x-nav-link>
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         <p class="text-amber-700">{{ __('Dashboard') }}</p>
                     </x-nav-link>

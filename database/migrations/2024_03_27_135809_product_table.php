@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('image');
             $table->date('availableFrom');
             $table->date('availableTill');
+            $table->string('status');
         });
     }
 

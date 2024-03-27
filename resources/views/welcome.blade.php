@@ -43,7 +43,11 @@
                     <div class=" h-1/6 grid grid-cols-2 m-1">
                         <h1 class="text-4xl text-amber-700">{{ $product_table->name}}</h1>
                         <p class="col-start-1 text-gray-600">locatie</p>
-                        <p class=" col-start-2 justify-self-end text-gray-600">{{ $product_table->availableFrom}} - {{ $product_table->availableTill}}</p>
+                        <form class=" col-start-2 row-start-1  self-center bg-amber-700 p-0.5 mb-1 rounded-lg text-gray-200 hover:text-gray-400 flex justify-center" method="POST" action="{{ route('rent_product', $product_table->id)}}"">
+                            {{ csrf_field() }}
+                            <button >Rent me</button>
+                        </form>
+                            <p class=" col-start-2 justify-self-end text-gray-600 w-[200px]">{{ $product_table->availableFrom}} - {{ $product_table->availableTill}}</p>
                     </div>
                 </article>
             </section>

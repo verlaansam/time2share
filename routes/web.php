@@ -17,6 +17,8 @@ use App\Http\Controllers\product_table_controller;
 
 Route::get('/', [product_table_controller::class, 'index']);
 
+Route::get('/', [product_table_controller::class, 'index'])->name('index');
+
 Route::post('/product_table_route', [product_table_controller::class, 'product_table'])->name('product_table');
 
 Route::get('/dashboard', [product_table_controller::class, 'dashboard'])->middleware(['auth', 'verified'])->name('dashboard');
@@ -28,6 +30,8 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::post('delete_product_route/{id}', [product_table_controller::class, 'delete_product'])->name('delete_product');
-
+Route::post('rent_product_route/{id}', [product_table_controller::class, 'rent_product'])->name('rent_product');
+Route::post('accept_product_route/{id}', [product_table_controller::class, 'accept_product'])->name('accept_product');
+Route::post('decline_product_route/{id}', [product_table_controller::class, 'decline_product'])->name('decline_product');
 
 require __DIR__.'/auth.php';

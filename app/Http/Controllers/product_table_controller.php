@@ -10,19 +10,40 @@ use App\models\product_table;
 class product_table_controller extends Controller
 {
     public function index(){
-        return view('welcome', ['product' => product_table::all()]);
+        return view('welcome', ['product' => product_table::where('status', 'available')->get()]);
     }
 
     public function dashboard(){
-        return view('dashboard', ['product' => product_table::all()]);
+        $products = ['product' => product_table::where('userId', Auth::id())->where('status', 'available')->get(),
+                    'product_request' => product_table::where('userId', Auth::id())->where('status', 'waiting_for_approval')->get(),
+                    'product_rented_out' => product_table::where('userId', Auth::id())->where('status', 'rented')->get()];
+        return view('dashboard', $products);
     }
 
     public function delete_product($id){
         $product = product_table::find($id);
         $product->delete();
         return redirect('/dashboard');
-
     }
+
+    public function rent_product($id){
+        $product = product_table::find($id);
+        $product = product_table::where('id', $id)->update(['status' => 'waiting_for_approval']);
+        return redirect('/');
+    }
+
+    public function accept_product($id){
+        $product = product_table::find($id);
+        $product = product_table::where('id', $id)->update(['status' => 'rented']);
+        return redirect('/dashboard');
+    }
+
+    public function decline_product($id){
+        $product = product_table::find($id);
+        $product = product_table::where('id', $id)->update(['status' => 'available']);
+        return redirect('/dashboard');
+    }
+    
 
     public function product_table(Request $request){
         $new_product = new product_table;
@@ -33,6 +54,7 @@ class product_table_controller extends Controller
         $new_product->image = $request->image;
         $new_product->availableFrom = $request->availableFrom;
         $new_product->availableTill = $request->availableTill;
+        $new_product->status = 'available';
         $new_product->save();
         return redirect('/dashboard');
     }
