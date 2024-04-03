@@ -5,8 +5,7 @@
         </h2>
     </x-slot>
     <div class="py-12">
-        <div class="w-screen  shadow-[rgba(0,0,0,0.1)_10px_-10px_4px_0px] shadow-lg">
-            
+        <div class="w-screen  shadow-[rgba(0,0,0,0.1)_10px_-10px_4px_0px] shadow-lg"> 
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg flex justify-center  ">
                 <div class="p-6 text-gray-900  w-2/4 bg-gray-200 p-1 m-3 rounded-xl flex justify-center flex-col">
                     <h1 class="self-center text-amber-700 text-3xl font-medium">Add Procduct</h1>
@@ -41,6 +40,11 @@
         <div class="flex justify-center flex-col">
             <h1 class="text-amber-700 text-3xl font-medium pl-5 pt-3">For Rent</h1>
             <article class=" h-fit w-screen flex flex-wrap">
+                @if ($product->isEmpty())
+                    <section class="flex items-center justify-center content-center h-[400px] w-screen">
+                        <h1 class="text-orange-200 text-3xl">Looks like no one's home :(</h1>
+                    </section> 
+                @endif
                 @foreach ($product as $product_table)
                 <section class="flex items-center justify-center h-[400px] w-[350px]">
                     <article class="bg-gray-200 w-[90%] h-[90%] rounded-xl shadow-lg">
@@ -65,6 +69,11 @@
         <div class="flex justify-center flex-col bg-white shadow-lg shadow-[rgba(0,0,0,0.1)_10px_-10px_4px_0px] ">
             <h1 class="text-amber-700 text-3xl font-medium pl-5 pt-3">My Requests</h1>
             <article class="h-fit w-screen flex flex-wrap">
+                @if ($product_request->isEmpty())
+                    <section class="flex items-center justify-center content-center h-[400px] w-screen">
+                        <h1 class="text-orange-200 text-3xl">Looks like no one's home :(</h1>
+                    </section> 
+                @endif
                 @foreach ($product_request as $product_table)
                 <section class="flex items-center justify-center h-[400px] w-[350px]">
                     <article class="bg-gray-200 w-[90%] h-[90%] rounded-xl shadow-lg">
@@ -91,6 +100,11 @@
         <div class="flex justify-center flex-col ">
             <h1 class="text-amber-700 text-3xl font-medium pl-5 pt-3">Rented out</h1>
             <article class=" h-fit w-screen flex flex-wrap">
+                @if ($product_rented_out->isEmpty())
+                    <section class="flex items-center justify-center content-center h-[400px] w-screen">
+                        <h1 class="text-orange-200 text-3xl">Looks like no one's home :(</h1>
+                    </section> 
+                @endif
                 @foreach ($product_rented_out as $product_table)
                 <section class="flex items-center justify-center h-[400px] w-[350px]">
                     <article class="bg-gray-200 w-[90%] h-[90%] rounded-xl shadow-lg">

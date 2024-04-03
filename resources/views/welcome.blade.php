@@ -36,6 +36,11 @@
             </header>
         <!-- product  -->
         <article class="shadow-[rgba(0,0,0,0.1)_10px_-10px_4px_0px] h-fit w-screen flex flex-wrap">
+            @if ($product->isEmpty())
+                    <section class="flex items-center justify-center content-center h-[400px] w-screen">
+                        <h1 class="text-orange-200 text-3xl">Looks like no one's home :(</h1>
+                    </section> 
+            @endif
             @foreach ($product as $product_table)
             <section class="flex items-center justify-center w-[350px] h-[400px]">
                 <article class="bg-gray-200 w-[90%] h-[90%] rounded-xl shadow-lg">
