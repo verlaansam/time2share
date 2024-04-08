@@ -22,6 +22,7 @@ return new class extends Migration
             $table->date('availableFrom');
             $table->date('availableTill');
             $table->string('status');
+            $table->integer('renterId');
         });
     }
 
