@@ -34,4 +34,6 @@ Route::post('rent_product_route/{id}', [product_table_controller::class, 'rent_p
 Route::post('accept_product_route/{id}', [product_table_controller::class, 'accept_product'])->name('accept_product');
 Route::post('decline_product_route/{id}', [product_table_controller::class, 'decline_product'])->name('decline_product');
 
+Route::get('/admin', [product_table_controller::class, 'admin'])->middleware(['auth', 'verified'])->name('admin');
+
 require __DIR__.'/auth.php';
