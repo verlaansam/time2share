@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\product_table_controller;
+use App\Http\Controllers\user_table_controller;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,6 +35,7 @@ Route::post('rent_product_route/{id}', [product_table_controller::class, 'rent_p
 Route::post('accept_product_route/{id}', [product_table_controller::class, 'accept_product'])->name('accept_product');
 Route::post('decline_product_route/{id}', [product_table_controller::class, 'decline_product'])->name('decline_product');
 
-Route::get('/admin', [product_table_controller::class, 'admin'])->middleware(['auth', 'verified'])->name('admin');
+Route::get('/admin', [user_table_controller::class, 'admin'])->middleware(['auth', 'verified'])->name('admin');
+Route::post('delete_user_route/{id}', [user_table_controller::class, 'delete_user'])->name('delete_user');
 
 require __DIR__.'/auth.php';

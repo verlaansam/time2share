@@ -46,11 +46,6 @@ class product_table_controller extends Controller
         return redirect('/dashboard');
     }
 
-    public function admin(){
-        return view('admin');
-    }
-
-
     public function product_table(Request $request){
         if($request->availableTill < $request->availableFrom){
             return redirect()->back();
