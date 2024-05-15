@@ -142,6 +142,24 @@
                             <h1 class="text-4xl text-amber-700">{{ $product_table->name}}</h1>
                             <p class="col-start-1 text-gray-600">{{ $product_table->location}}</p>
                             <p class=" col-start-2 justify-self-end text-gray-600  w-[200px]">{{ $product_table->availableFrom}} / {{ $product_table->availableTill}}</p> 
+                            <button class="relative bottom-[57px] left-[135px] bg-amber-700 p-1 self-center rounded-lg text-gray-200 hover:text-gray-400" onclick="openModal('modelConfirm')">
+                                <p>leave a review</p>
+                            </button>
+                             <div id="modelConfirm" class="fixed hidden z-50 inset-0 bg-gray-900 bg-opacity-60 overflow-y-auto h-full w-full px-4 ">
+                                <div class="relative top-40 mx-auto shadow-xl rounded-md bg-white max-w-md p-4">
+                                    <form method="POST" action="{{ route('review_table')}}">
+                                        {{ csrf_field() }}
+                                        <p>write your review</p>
+                                        <p id="userId" style="display:none;">{{$product_table->id}}</p>
+                                        <textarea name="" id="review" cols="30" rows="4"></textarea>
+                                        <button value="Submit" id="submit" class=" bg-amber-700 p-1 self-center rounded-lg text-gray-200 hover:text-gray-400">
+                                            <p>submit</p>
+                                        </button>
+                                    </form>
+                                    
+                                </div>
+                            </div>
+                            
                         </div>
                         <form class="relative bottom-[97%] left-[88%]" method="POST" action="{{ route('delete_product', $product_table->id)}}"">
                             {{ csrf_field() }}
@@ -150,6 +168,7 @@
                             </svg>
                             </button>
                         </form>
+                        
                     </article>
                 </section>
                 @endforeach 
@@ -157,3 +176,26 @@
         </div>
     </div>
 </x-app-layout>
+<script type="text/javascript">
+    window.openModal = function(modalId) {
+        document.getElementById(modalId).style.display = 'block'
+        document.getElementsByTagName('body')[0].classList.add('overflow-y-hidden')
+    }
+
+    window.closeModal = function(modalId) {
+        document.getElementById(modalId).style.display = 'none'
+        document.getElementsByTagName('body')[0].classList.remove('overflow-y-hidden')
+    }
+
+    // Close all modals when press ESC
+    document.onkeydown = function(event) {
+        event = event || window.event;
+        if (event.keyCode === 27) {
+            document.getElementsByTagName('body')[0].classList.remove('overflow-y-hidden')
+            let modals = document.getElementsByClassName('modal');
+            Array.prototype.slice.call(modals).forEach(i => {
+                i.style.display = 'none'
+            })
+        }
+    };
+</script>

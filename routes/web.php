@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\product_table_controller;
 use App\Http\Controllers\user_table_controller;
+use App\Http\Controllers\review_table_controller;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,5 +38,8 @@ Route::post('decline_product_route/{id}', [product_table_controller::class, 'dec
 
 Route::get('/admin', [user_table_controller::class, 'admin'])->middleware(['auth', 'verified'])->name('admin');
 Route::post('delete_user_route/{id}', [user_table_controller::class, 'delete_user'])->name('delete_user');
+
+Route::post('/review_table_route', [review_table_controller::class, 'review_table'])->name('review_table');
+
 
 require __DIR__.'/auth.php';
