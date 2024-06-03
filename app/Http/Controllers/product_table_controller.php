@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\models\product_table;
-
+use App\models\review_table;
 
 class product_table_controller extends Controller
 {
@@ -17,7 +17,8 @@ class product_table_controller extends Controller
         $products = ['product' => product_table::where('userId', Auth::id())->where('status', 'available')->get(),
                     'product_request' => product_table::where('userId', Auth::id())->where('status', 'waiting_for_approval')->get(),
                     'product_rented_out' => product_table::where('userId', Auth::id())->where('status', 'rented')->get(),
-                    'product_rented' => product_table::where('renterId', Auth::id())->where('status', 'rented')->get()];
+                    'product_rented' => product_table::where('renterId', Auth::id())->where('status', 'rented')->get(),
+                    'review' => review_table::where('userId', Auth::id())->get()];
         return view('dashboard', $products);
     }
 
@@ -50,12 +51,17 @@ class product_table_controller extends Controller
         if($request->availableTill < $request->availableFrom){
             return redirect()->back();
         }
+        $request->validate([
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif',
+        ]);
+        $imageName = time().'.'.$request->image->extension();
+        $request->image->move(public_path('images'), $imageName);
         $new_product = new product_table;
         $new_product->userId = Auth::id();
         $new_product->name = $request->name;
         $new_product->location = $request->location;
         $new_product->catagorie = $request->catagorie;
-        $new_product->image = $request->image;
+        $new_product->image = 'images/'.$imageName;
         $new_product->availableFrom = $request->availableFrom;
         $new_product->availableTill = $request->availableTill;
         $new_product->status = 'available';

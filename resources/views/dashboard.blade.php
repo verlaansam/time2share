@@ -6,8 +6,8 @@
     </x-slot>
     <div class="py-12">
         <div class="w-screen  shadow-[rgba(0,0,0,0.1)_10px_-10px_4px_0px] shadow-lg"> 
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg flex justify-center  ">
-                <div class="p-6 text-gray-900  w-2/4 bg-gray-200 p-1 m-3 rounded-xl flex justify-center flex-col">
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg flex justify-center p-6  ">
+                <div class="p-6 text-gray-900  w-2/4 bg-gray-200 p-1 m-3 rounded-xl flex justify-center flex-col ">
                     <h1 class="self-center text-amber-700 text-3xl font-medium">Add Product</h1>
                     <form class="grid grid-cols-2" method="POST" action="{{ route('product_table')}}"">
                         {{ csrf_field() }}
@@ -37,6 +37,23 @@
                 </div>
             </div>
         </div>
+        <div class="flex justify-center flex-col  bg-white shadow-[rgba(0,0,0,0.1)_10px_-10px_4px_0px] ">
+            <h1 class="text-amber-700 text-3xl font-medium pl-5 pt-3">My reviews</h1>
+            <article class="w-screen flex flex-wrap">
+                @if ($review->isEmpty())
+                    <section class="flex items-center justify-center content-center h-[400px] w-screen">
+                        <h1 class="text-orange-200 text-3xl">Looks like no one's home :(</h1>
+                    </section> 
+                @endif
+                @foreach ($review as $review_table)
+                <section class="flex items-center justify-center h-[250px] w-[350px]">
+                    <article class="bg-gray-200 w-[90%] h-[80%] rounded-xl shadow-lg">
+                        <p class="w-full h-full  p-2 rounded-t-xl flex justify-center items-center">{{ $review_table->review}}</p>
+                    </article>
+                </section>
+                @endforeach
+            </article>
+        </div>
         <div class="flex justify-center flex-col">
             <h1 class="text-amber-700 text-3xl font-medium pl-5 pt-3">For Rent</h1>
             <article class=" h-fit w-screen flex flex-wrap">
@@ -48,7 +65,7 @@
                 @foreach ($product as $product_table)
                 <section class="flex items-center justify-center h-[400px] w-[350px]">
                     <article class="bg-gray-200 w-[90%] h-[90%] rounded-xl shadow-lg">
-                        <p class="w-full h-[80%] bg-green-500 rounded-t-xl">{{ $product_table->userId}}</p>
+                        <img class="w-full h-[80%] bg-green-500 rounded-t-xl" src="{{ asset($product_table->image) }}">
                         <div class=" h-1/6 grid grid-cols-2 m-1">
                             <h1 class="text-4xl text-amber-700">{{ $product_table->name}}</h1>
                             <p class="col-start-1 text-gray-600">{{ $product_table->location}}</p>
@@ -147,11 +164,13 @@
                             </button>
                              <div id="modelConfirm" class="fixed hidden z-50 inset-0 bg-gray-900 bg-opacity-60 overflow-y-auto h-full w-full px-4 ">
                                 <div class="relative top-40 mx-auto shadow-xl rounded-md bg-white max-w-md p-4">
-                                    <form method="POST" action="{{ route('review_table')}}">
+                                   <form method="POST" action="{{ route('review_table')}}">
                                         {{ csrf_field() }}
-                                        <p>write your review</p>
-                                        <p id="userId" style="display:none;">{{$product_table->id}}</p>
-                                        <textarea name="" id="review" cols="30" rows="4"></textarea>
+                                        <label for="userId" style="display: none">userId:</label><br>
+                                        <input type="text" id="userId" name="userId" value="{{$product_table->userId}}" style="display: none"><br>
+                                        <label for="review">Write your review</label><br>
+                                        <textarea name="review" id="review" cols="30" rows="4"></textarea>
+                                        <br>
                                         <button value="Submit" id="submit" class=" bg-amber-700 p-1 self-center rounded-lg text-gray-200 hover:text-gray-400">
                                             <p>submit</p>
                                         </button>
