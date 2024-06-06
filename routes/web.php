@@ -41,5 +41,7 @@ Route::post('delete_user_route/{id}', [user_table_controller::class, 'delete_use
 
 Route::post('/review_table_route', [review_table_controller::class, 'review_table'])->name('review_table');
 
+Route::get('/images/{imageName}', [ImageController::class, 'show'])->name('image_show');
+
 
 require __DIR__.'/auth.php';

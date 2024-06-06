@@ -33,6 +33,7 @@
         <header class="flex flex-col items-center pb-20 ">
             <h1 class="text-amber-700 font-medium text-8xl mt-16">Time2Share<h1>
             <button class="w-36 h-10 rounded font-medium text-gray-200 hover:text-slate-900  bg-amber-700 text-2xl mt-2">Share Now</button>
+            <img src="{{ route('image_show', ['imageName' => 'spork.jpg']) }}" alt="Your Image">
             </header>
         <!-- product  -->
         <article class="shadow-[rgba(0,0,0,0.1)_10px_-10px_4px_0px] h-fit w-screen flex flex-wrap">
