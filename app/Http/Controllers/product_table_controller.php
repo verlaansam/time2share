@@ -51,17 +51,13 @@ class product_table_controller extends Controller
         if($request->availableTill < $request->availableFrom){
             return redirect()->back();
         }
-        $request->validate([
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif',
-        ]);
-        $imageName = time().'.'.$request->image->extension();
-        $request->image->move(public_path('images'), $imageName);
+        
         $new_product = new product_table;
         $new_product->userId = Auth::id();
         $new_product->name = $request->name;
         $new_product->location = $request->location;
         $new_product->catagorie = $request->catagorie;
-        $new_product->image = 'images/'.$imageName;
+        $new_product->image = $request->name;//'images/'.$imageName;
         $new_product->availableFrom = $request->availableFrom;
         $new_product->availableTill = $request->availableTill;
         $new_product->status = 'available';

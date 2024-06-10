@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\product_table_controller;
 use App\Http\Controllers\user_table_controller;
 use App\Http\Controllers\review_table_controller;
+use App\Http\Controllers\ImageController;
+use App\Http\Controllers\UploadController;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,7 +43,11 @@ Route::post('delete_user_route/{id}', [user_table_controller::class, 'delete_use
 
 Route::post('/review_table_route', [review_table_controller::class, 'review_table'])->name('review_table');
 
-Route::get('/images/{imageName}', [ImageController::class, 'show'])->name('image_show');
+Route::get('/images/{imageName}', [ImageController::class, 'image_show'])->name('image_show');
+
+Route::get('uploads/', [UploadController::class, 'index'])->name('uploads.index');
+Route::post('uploads/create', [UploadController::class, 'create'])->name('uploads.create');
+Route::post('uploads/store', [UploadController::class, 'store'])->name('uploads.store');
 
 
 require __DIR__.'/auth.php';

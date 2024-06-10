@@ -4,6 +4,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Http\Request;
 
 class ImageController extends Controller
 {
@@ -13,7 +14,7 @@ class ImageController extends Controller
      * @param  string  $imageName
      * @return \Illuminate\Http\Response
      */
-    public function show($imageName)
+    public function image_show($imageName)
     {
         // Construct the full path to the image within the storage directory
         $path = storage_path("app/public/images/{$imageName}");

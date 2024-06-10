@@ -65,12 +65,18 @@
                 @foreach ($product as $product_table)
                 <section class="flex items-center justify-center h-[400px] w-[350px]">
                     <article class="bg-gray-200 w-[90%] h-[90%] rounded-xl shadow-lg">
-                        <img class="w-full h-[80%] bg-green-500 rounded-t-xl" src="{{ asset($product_table->image) }}">
+                        <img class="w-full h-[80%] bg-green-500 rounded-t-xl" src="{{ route('image_show', ['imageName' => $product_table->name]) }}" alt="Your Image">
+                        <form action="{{ route('uploads.store') }}" method="POST" enctype="multipart/form-data">
+                            @csrf
+                            <input type="file" name="file_upload">
+                            <button type="submit">Upload</button>
+                        </form>
                         <div class=" h-1/6 grid grid-cols-2 m-1">
                             <h1 class="text-4xl text-amber-700">{{ $product_table->name}}</h1>
                             <p class="col-start-1 text-gray-600">{{ $product_table->location}}</p>
                             <p class=" col-start-2 justify-self-end text-gray-600  w-[200px]">{{ $product_table->availableFrom}} / {{ $product_table->availableTill}}</p> 
                         </div>
+                        
                         <form class="relative bottom-[97%] left-[88%]" method="POST" action="{{ route('delete_product', $product_table->id)}}"">
                             {{ csrf_field() }}
                             <button ><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
@@ -94,7 +100,7 @@
                 @foreach ($product_request as $product_table)
                 <section class="flex items-center justify-center h-[400px] w-[350px]">
                     <article class="bg-gray-200 w-[90%] h-[90%] rounded-xl shadow-lg">
-                        <p class="w-full h-[80%] bg-green-500 rounded-t-xl">{{ $product_table->userId}}</p>
+                        <img class="w-full h-[80%] bg-green-500 rounded-t-xl" src="{{ route('image_show', ['imageName' => 'spork.jpg']) }}" alt="Your Image">
                         <div class=" h-1/6 grid grid-cols-2 m-1">
                             <h1 class="text-4xl text-amber-700">{{ $product_table->name}}</h1>
                             <p class="col-start-1 text-gray-600">{{ $product_table->location}}</p>
@@ -125,7 +131,7 @@
                 @foreach ($product_rented_out as $product_table)
                 <section class="flex items-center justify-center h-[400px] w-[350px]">
                     <article class="bg-gray-200 w-[90%] h-[90%] rounded-xl shadow-lg">
-                        <p class="w-full h-[80%] bg-green-500 rounded-t-xl">{{ $product_table->userId}}</p>
+                        <img class="w-full h-[80%] bg-green-500 rounded-t-xl" src="{{ route('image_show', ['imageName' => 'spork.jpg']) }}" alt="Your Image">
                         <div class=" h-1/6 grid grid-cols-2 m-1">
                             <h1 class="text-4xl text-amber-700">{{ $product_table->name}}</h1>
                             <p class="col-start-1 text-gray-600">{{ $product_table->location}}</p>
@@ -154,7 +160,7 @@
                 @foreach ($product_rented as $product_table)
                 <section class="flex items-center justify-center h-[400px] w-[350px]">
                     <article class="bg-gray-200 w-[90%] h-[90%] rounded-xl shadow-lg">
-                        <p class="w-full h-[80%] bg-green-500 rounded-t-xl">{{ $product_table->userId}}</p>
+                        <img class="w-full h-[80%] bg-green-500 rounded-t-xl" src="{{ route('image_show', ['imageName' => 'spork.jpg']) }}" alt="Your Image">
                         <div class=" h-1/6 grid grid-cols-2 m-1">
                             <h1 class="text-4xl text-amber-700">{{ $product_table->name}}</h1>
                             <p class="col-start-1 text-gray-600">{{ $product_table->location}}</p>
