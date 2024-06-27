@@ -51,6 +51,8 @@ class product_table_controller extends Controller
         if($request->availableTill < $request->availableFrom){
             return redirect()->back();
         }
+
+        
         
         $new_product = new product_table;
         $new_product->userId = Auth::id();

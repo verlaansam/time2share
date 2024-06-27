@@ -11,7 +11,7 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         <p class="text-amber-700">{{ __('Dashboard') }}</p>
                     </x-nav-link>
-                    @if (Auth::id() == 3)
+                    @if (Auth::id() == 4)
                     <x-nav-link :href="route('admin')" :active="request()->routeIs('admin')">
                         <p class="text-amber-700">{{ __('Admin') }}</p>
                     </x-nav-link> 

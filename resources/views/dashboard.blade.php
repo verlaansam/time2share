@@ -25,8 +25,6 @@
                         </select><br>
                         </div>
                         <div class="pl-1">
-                        <label for="image">image:</label><br>
-                        <input class="bg-amber-700 p-1 m-1 rounded-lg text-gray-200 hover:text-gray-400" type="file" id="image" name="image" value="image" accept="image/png, image/jpeg"><br>
                         <label for="availableFrom">availableFrom:</label><br>
                         <input type="date" id="availableFrom" name="availableFrom" value="availableFrom"><br>
                         <label for="availableTill">availableTill:</label><br>
@@ -65,12 +63,8 @@
                 @foreach ($product as $product_table)
                 <section class="flex items-center justify-center h-[400px] w-[350px]">
                     <article class="bg-gray-200 w-[90%] h-[90%] rounded-xl shadow-lg">
-                        <img class="w-full h-[80%] bg-green-500 rounded-t-xl" src="{{ route('image_show', ['imageName' => $product_table->name]) }}" alt="Your Image">
-                        <form action="{{ route('uploads.store') }}" method="POST" enctype="multipart/form-data">
-                            @csrf
-                            <input type="file" name="file_upload">
-                            <button type="submit">Upload</button>
-                        </form>
+                        <img class="w-full h-[80%] bg-green-500 rounded-t-xl" src="{{ route('image_show', ['imageName' => $product_table->name]) }}" alt="Your Image">         
+                  </form>
                         <div class=" h-1/6 grid grid-cols-2 m-1">
                             <h1 class="text-4xl text-amber-700">{{ $product_table->name}}</h1>
                             <p class="col-start-1 text-gray-600">{{ $product_table->location}}</p>

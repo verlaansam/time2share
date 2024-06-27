@@ -8,6 +8,7 @@ use App\Http\Controllers\review_table_controller;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\UploadController;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -45,9 +46,8 @@ Route::post('/review_table_route', [review_table_controller::class, 'review_tabl
 
 Route::get('/images/{imageName}', [ImageController::class, 'image_show'])->name('image_show');
 
-Route::get('uploads/', [UploadController::class, 'index'])->name('uploads.index');
-Route::post('uploads/create', [UploadController::class, 'create'])->name('uploads.create');
-Route::post('uploads/store', [UploadController::class, 'store'])->name('uploads.store');
 
+Route::get('file-form', [UploadController::class, 'index']);
+Route::post('upload', [UploadController::class, 'store']);
 
 require __DIR__.'/auth.php';
