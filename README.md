@@ -1,4 +1,8 @@
 welkom at my laravel project for iiatdb.
+
+php aristan server
+npm run dev
+
 admin account:
 admin@admin..nl
 admin123
